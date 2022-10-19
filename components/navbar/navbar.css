@@ -1,0 +1,377 @@
+.sidenav {
+    height: 100%;
+    position: fixed;
+    width: 271px;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    display: grid;
+    background-color: white;
+    grid-gap: 1rem;
+    align-items: start;
+    grid-template-rows: 93px;
+  }
+
+  @media only screen and (max-width:900px){
+    .sidenav{
+      display: none;
+    }
+  }
+  
+  .sidenav_top{
+    display: grid;
+      grid-auto-flow: column;
+      width: 100%;
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+      /* grid-template-rows: 3rem; */
+  }
+  
+  .sidenav_social{
+    width: 100%;
+      height: 5rem;
+      display: grid;
+      grid-auto-flow: column;
+      justify-content: space-evenly;
+      align-items: center;
+      /* background: red; */
+  }
+
+  .side_bottom{
+    align-self: end;
+  }
+
+  .pb{
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    font-weight: 600;
+  }
+  
+  .social_link{
+    text-decoration: none;
+  }
+  
+  .sidenav_links{
+    display: grid;
+    grid-gap: 1rem;
+    width: 95%;
+    justify-self: center;
+    margin-top: 2rem;
+  }
+  
+  .sidenav_link{
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    grid-gap: 10px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: 0.374px;
+    align-items: center;
+
+    /* Neutral/600 */
+
+    color: #8C94A1;
+    padding: 2rem;
+  }
+
+  .active{
+    background: #E7EEF9;
+    border-radius: 8px;
+    font-weight: 700 !important;
+    color: #295AA9 !important;
+    border-left: 8px solid;
+  }
+
+  .sidenav_link_icon{
+    /* height: 20px;
+    width: 18px; */
+    font-size: 23px;
+    /* border-radius: 0px; */
+    /* color: #8C94A1; */
+  }
+  
+  .sidenav_link:hover{
+    width: 100%;
+    /* background-color: rgb(241 241 241 / 0.04); */
+  }
+  
+  .sidedroplink{
+    padding: 6px 8px 6px 16px;
+      text-decoration: none;
+      font-size: 1.5rem;
+      color: #818181;
+      border: none;
+      background: none;
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
+      outline: none;
+  }
+  
+  .sidedroplink:hover{
+    width: 100%;
+    background-color: rgb(241 241 241 / 0.04);
+  }
+  
+  .side_icon{
+    font-size: 3rem;
+  }
+  
+  /* .sidenav_logo{
+  } */
+  
+  .closebtn {
+    font-size: 30px;
+    font-weight: 700;
+    text-decoration: none;
+    color: #8c1d5a;
+  }
+  
+  
+  /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+  .dropdown-container {
+    display: none;
+    padding-left: 8px;
+    grid-gap: 2rem;
+    background-color: #4b4c57;
+  }
+  
+  /* Optional: Style the caret down icon */
+  .fa-caret-down {
+    float: right;
+    padding-right: 8px;
+  }
+  
+  /* Some media queries for responsiveness */
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
+
+  .header{
+      width: 100%;
+      height: 93px;
+      background-color: white;
+      position: fixed;
+      top: 0;
+      right: 0;
+      display: grid;
+      /* padding: 2rem 1rem; */
+      grid-auto-flow: column;
+      align-items: center;
+  }
+
+  .user{
+    float: right;
+    margin-right: 1rem;
+  }
+
+  .welcome_user{
+    text-align: center;
+    display: inline-block;
+    margin-left: 281px;
+  }
+
+  @media only screen and (max-width: 900px){
+  
+    .welcome_user{
+      margin-left: 7rem;
+    }
+  }
+
+
+  .user_email{
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .user_welcome{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 38px;
+    letter-spacing: 0.374px;
+
+    /* Primary blue/500 */
+
+    color: #295AA9;
+    text-align: left;
+  }
+
+  .openbtn {
+    -webkit-clip-path: polygon(0 0, 100% 0%, 0% 100%);
+      clip-path: polygon(0 0, 100% 0%, 0% 100%);
+      width: 7rem;
+      height: 6rem;
+      font-size: 20px;
+      text-align: start;
+      cursor: pointer;
+      color: white;
+      padding: 6px 8px 3rem;
+      background-color: #634253;
+      border: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      display: none;
+  }
+
+  @media only screen and (max-width: 900px){
+  
+    /* .navbar{
+      justify-content: end;
+      padding: 0px 0rem 0 2rem;
+      grid-template-columns: 25%;
+      margin-top: 0rem;
+    }
+    .navbar_link{
+      display: none;
+    } */
+  
+    .openbtn{
+      display: block;
+    }
+  }
+
+  .closebtn {
+    font-size: 30px;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    color: #8c1d5a;
+  }
+
+
+  .sec_sidenav {
+    height: 100%;
+    position: fixed;
+    width: 22rem;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    display: grid;
+    grid-gap: 1rem;
+    align-items: start;
+    grid-template-rows: 8rem;
+    background-color: white;
+    padding: 0 1rem;
+  }
+  
+  .sec_sidenav_top{
+    display: grid;
+      grid-auto-flow: column;
+      width: 100%;
+      height: 100%;
+      justify-content: space-between;
+      /* grid-template-rows: 3rem; */
+      grid-template-columns: 5rem 7rem;
+  }
+  
+  .sec_sidenav_social{
+    width: 100%;
+      height: 5rem;
+      display: grid;
+      grid-auto-flow: column;
+      justify-content: space-around;
+      align-items: center;
+      /* background: red; */
+      align-self: end;
+  }
+  
+  .social_link{
+    text-decoration: none;
+  }
+
+
+  .sec_sidenav_links{
+    display: grid;
+    grid-gap: 1rem;
+  }
+  
+  .sec_sidenav_link{
+    float: none;
+      padding: 8px;
+      display: block;
+      text-align: left;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      border: none;
+      width: 90%;
+      color: #3d4255;
+      background: none;
+      outline: none;
+      cursor: pointer;
+      display: grid;
+      grid-auto-flow: column;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(128,128,128,.2);
+      margin-left: 1rem;
+  }
+  
+  .sec_sidenav_link:hover{
+    width: 100%;
+    background-color: rgb(241 241 241 / 0.04);
+  }
+
+  /* .sidedroplink:hover{
+    width: 100%;
+    background-color: rgb(241 241 241 / 0.04);
+  }
+  
+  .side_icon{
+    font-size: 3rem;
+  } */
+  
+  .sec_sidenav_logo{
+    height: 8rem;
+  }
+
+  .logout{
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 1rem;
+    margin-top: 2px;
+  }
+
+  .logout_btn{
+    border: none;
+    transition: all .2s;
+    text-decoration: none;
+    cursor: pointer;
+    background-color: #182334;
+    color: #328af1;
+    padding: 8px;
+    border-radius: 4px;
+    font-size: 1.3rem;
+  }
+
+  .logout_btn:focus{
+    outline: none;
+}
+
+.whatsapp{
+  color: #25d366;
+}
+
+.twitter{
+  color: #00acee;
+}
+
+.facebook{
+  color: #3b5998;
+}
+
+.instagram{
+  color: #c32aa3;
+}
+
+.google{
+  color: #db4437;
+}
