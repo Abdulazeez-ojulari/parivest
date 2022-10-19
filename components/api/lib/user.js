@@ -1,26 +1,22 @@
 // import axios from "axios";
 import { axiosClient } from "../http-setting";
 
-export function registerUser(user){
-    return axiosClient.post('/users/register', user);
-}
-
 export function getUsers(){
   return axiosClient.get('/api/v1/users');
 }
 
+export function getUsersWithPageAndLimit(page, limit){
+  return axiosClient.get('/api/v1/users?pageNo='+page+'&limitNo='+limit);
+}
+
+export function getUsersBySearch(search){
+  return axiosClient.get('/api/v1/users?search='+search);
+}
+
+export function getUsersByAccess(access){
+  return axiosClient.get('/api/v1/users?access='+access);
+}
+
 export function getUser(id){
   return axiosClient.get("/api/v1/users/single?id="+id);
-}
-
-export function addAddress(details){
-  return axiosClient.post("/users/address", details);
-}
-
-export function editAddress(details){
-  return axiosClient.put("/users/address", details);
-}
-
-export function deleteAddress(email, id){
-  return axiosClient.delete("/users/address/" + email + "/" + id);
 }

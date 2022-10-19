@@ -158,6 +158,7 @@
     /* Neutral/800 */
 
     color: #3A3F47;
+    text-transform: capitalize;
   }
 
   .logged_user{
@@ -658,6 +659,7 @@
 }
 
 .status_form_input > select{
+  width: 100%;
   -webkit-appearance: none;
   -moz-appearance: none;
   text-indent: 1px;
@@ -676,6 +678,7 @@
   background-color: transparent;
   border: none;
   outline: none;
+  padding: 1rem;
 }
 
 .button{
@@ -711,4 +714,57 @@
 .status_form_icon{
   font-size: 18px;
   color: #224B8D;
+}
+
+.user_pagination{
+  height: max-content;
+  padding: 4rem;
+  display: grid;
+  grid-gap: 1rem;
+  justify-content: end;
+}
+
+.user_pagination > div{
+  display: flex;
+  gap: 1rem;
+}
+
+.user_pagination > p{
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  /* identical to box height */
+
+  letter-spacing: 0.374px;
+
+  /* Neutral/900 */
+
+  color: #131518;
+  text-align: center;
+}
+
+.paginate_btn{
+  cursor: pointer;
+  width: 45px;
+  height: 33px;
+
+  /* Secondary green/500 */
+
+  background: #7FBABD;
+  border-radius: 4px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  /* identical to box height */
+
+  letter-spacing: 0.374px;
+
+  /* Primary blue/50 */
+
+  color: #F3F6FC;
+  display: grid;
+  align-items: center;
+  justify-items: center;
 }

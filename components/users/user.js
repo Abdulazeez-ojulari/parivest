@@ -1,16 +1,20 @@
 
 import styles from './user.module.css'
 import { useEffect, useState } from 'react';
-import { getUser } from '../api/lib/user';
+import { getUser, getUsersByAccess, getUsersWithPageAndLimit } from '../api/lib/user';
 import DatePicker from "react-datepicker";
 
 export default function User(props) {
+  const [loading, setLoadingState] = useState(false);
   const [users, setUsersState] = useState([]);
   const [user, setUserState] = useState({});
+  const [meta, setMetaState] = useState({});
+  const [page, setPageState] = useState(1);
+  const [limit, setLimitState] = useState(8);
   const [status, setStatusState] = useState(false);
   const [profile, setProfileState] = useState(false);
   const [filterStatus, setFilterStatusState] = useState(false);
-  const [startDate, setStartDate] = useState(new Date());
+  const [access, setAccessState] = useState("All");
   const months = [
     "Jan",
     "Feb",
@@ -30,6 +34,9 @@ export default function User(props) {
   useEffect(() => {
     if(props.users)
     setUsersState(props.users)
+    setMetaState(props.meta)
+    setPageState(props.meta.page)
+    setLimitState(props.meta.limit)
   }, []);
 
   async function view(userObj){
@@ -54,61 +61,112 @@ export default function User(props) {
   function close(){
     setStatusState(false)
   }
+
+  async function nextPage () {
+    if(page < meta.pages){
+        setLoadingState(true)
+        let newPage = page + 1;
+        setPageState(newPage)
+        let res = await getUsersWithPageAndLimit(newPage, limit)
+        if(res.data.data.length>0){
+            setLoadingState(false)
+            setUsersState(res.data.data[0].data)
+            setMetaState(res.data.data[0].metadata)
+        }
+    }
+  };
+
+  async function prevPage () {
+    if(page > 1){
+        setLoadingState(true)
+        let newPage = page - 1;
+        setPageState(newPage)
+        let res = await getUsersWithPageAndLimit(newPage, limit)
+        if(res.data.data.length>0){
+            setLoadingState(false)
+            setUsersState(res.data.data[0].data)
+            setMetaState(res.data.data[0].metadata)
+        }
+    }
+  };
+
+  async function getByAccess(access) {
+    setLoadingState(true)
+    if(access !== 'all'){
+        let res = await getUsersByAccess(access)
+        if(res.data.data.length>0){
+            setAccessState(access)
+            setLoadingState(false)
+            setUsersState(res.data.data[0].data)
+            setMetaState(res.data.data[0].metadata)
+        }
+    }else{
+        let res = await getUsersWithPageAndLimit(1, limit)
+        if(res.data.data.length>0){
+            setAccessState(access)
+            setLoadingState(false)
+            setPageState(1)
+            setUsersState(res.data.data[0].data)
+            setMetaState(res.data.data[0].metadata)
+        }
+    }
+  }
+
   return (
     <div className={styles.users_container}>
         {!profile &&
         <>
             <div className={styles.user_filter}>
-            <div onClick={openStatusFilter} className={styles.user_filter_row_1}>
-                <h6>All</h6>
-                <span className={"iconify " + styles.icon} data-icon="eva:arrow-ios-downward-outline"></span>
-                {filterStatus &&
-                <div className={styles.logged_user}>
-                    <ul className={styles.logged_user_row_2}>
-                        <p>All</p>
-                        <p>Approved</p>
-                        <p>Pending</p>
-                        <p>In-review</p>
-                        {/* <Link href="/auth"><a>My Account</a></Link>
-                        <Link href="/orders"><a>My Orders</a></Link> */}
-                    </ul>
+                <div onClick={openStatusFilter} className={styles.user_filter_row_1}>
+                    <h6>{access}</h6>
+                    <span className={"iconify " + styles.icon} data-icon="eva:arrow-ios-downward-outline"></span>
+                    {filterStatus &&
+                    <div className={styles.logged_user}>
+                        <ul className={styles.logged_user_row_2}>
+                            <p onClick={() => getByAccess('all')}>All</p>
+                            <p onClick={() => getByAccess('approved')}>Approved</p>
+                            <p onClick={() => getByAccess('pending')}>Pending</p>
+                            <p onClick={() => getByAccess('in-review')}>In-review</p>
+                            {/* <Link href="/auth"><a>My Account</a></Link>
+                            <Link href="/orders"><a>My Orders</a></Link> */}
+                        </ul>
+                    </div>
+                    }
                 </div>
-                }
-            </div>
 
-            <div className={styles.user_filter_row_2}>
-                <div className={styles.user_filter_date_con}>
-                    <div className={styles.user_filter_date}>
-                        <label className={styles.user_filter_date_label} >
-                            From
-                        </label>
-                        <div className={styles.user_filter_date_input}>
-                            <DatePicker
-                                placeholderText="dd/mm/yyyy"
-                            />
-                            <span className={"iconify " + styles.date_icon} data-icon="uil:calender"></span>
+                <div className={styles.user_filter_row_2}>
+                    <div className={styles.user_filter_date_con}>
+                        <div className={styles.user_filter_date}>
+                            <label className={styles.user_filter_date_label} >
+                                From
+                            </label>
+                            <div className={styles.user_filter_date_input}>
+                                <DatePicker
+                                    placeholderText="dd/mm/yyyy"
+                                />
+                                <span className={"iconify " + styles.date_icon} data-icon="uil:calender"></span>
+                            </div>
+                        </div>
+                        <div className={styles.user_filter_date}>
+                            <label className={styles.user_filter_date_label} >
+                                To
+                            </label>
+                            <div className={styles.user_filter_date_input}>
+                                <DatePicker
+                                    placeholderText="dd/mm/yyyy"
+                                />
+                                <span className={"iconify " + styles.date_icon} data-icon="uil:calender"></span>
+                            </div>
                         </div>
                     </div>
-                    <div className={styles.user_filter_date}>
-                        <label className={styles.user_filter_date_label} >
-                            To
-                        </label>
-                        <div className={styles.user_filter_date_input}>
-                            <DatePicker
-                                placeholderText="dd/mm/yyyy"
-                            />
-                            <span className={"iconify " + styles.date_icon} data-icon="uil:calender"></span>
+                    <div className={styles.user_filter_search}>
+                        <img src='/images/searchicon.png' className={styles.user_filter_search_icon} alt='search icon' />
+                        <div className={styles.user_filter_search_input}>
+                            <span className={"iconify " + styles.search_icon} data-icon="carbon:search"></span>
+                            <input type='text' placeholder='Search' />
                         </div>
                     </div>
                 </div>
-                <div className={styles.user_filter_search}>
-                    <img src='/images/searchicon.png' className={styles.user_filter_search_icon} alt='search icon' />
-                    <div className={styles.user_filter_search_input}>
-                        <span className={"iconify " + styles.search_icon} data-icon="carbon:search"></span>
-                        <input type='text' placeholder='Search' />
-                    </div>
-                </div>
-            </div>
             </div>
             <div className={styles.users}>
             <table className={styles.table}>
@@ -124,22 +182,40 @@ export default function User(props) {
                 </tr>
                 </thead>
                 <tbody>
-                {users.map(user => {
-                    return (
-                    <tr key={user._id} className={styles.refId + " " + styles.tr}>
-                        <td className={styles.td}>{new Date(user.createdAt).getDate() + " " + months[new Date(user.createdAt).getMonth()] + " " + new Date(user.createdAt).getFullYear()}</td>
-                        <td className={styles.td}>{user.client_id}</td>
-                        <td className={styles.td}>{user.first_name + " " + user.last_name}</td>
-                        <td className={styles.td}>{user.email}</td>
-                        <td className={styles.td}>{user.phone}</td>
-                        <td className={styles.td + " " + styles.status + " " + (user.status.access  === 'Pending' ? styles.pending : user.status.access === 'Approved' ? styles.approve: styles.review)} style={{justifySelf: 'center'}}>{user.status.access}</td>
-                        <td onClick={() => view(user)} className={styles.td + " " + styles.view} style={{textAlign: 'center'}}>View</td>
-                    </tr>
-                    )
-                })}
+                {!loading && 
+                <>
+                    {users.map(user => {
+                        return (
+                        <tr key={user._id} className={styles.refId + " " + styles.tr}>
+                            <td className={styles.td}>{new Date(user.createdAt).getDate() + " " + months[new Date(user.createdAt).getMonth()] + " " + new Date(user.createdAt).getFullYear()}</td>
+                            <td className={styles.td}>{user.client_id}</td>
+                            <td className={styles.td}>{user.first_name + " " + user.last_name}</td>
+                            <td className={styles.td}>{user.email}</td>
+                            <td className={styles.td}>{user.phone}</td>
+                            <td className={styles.td + " " + styles.status + " " + (user.status.access  === 'Pending' ? styles.pending : user.status.access === 'Approved' ? styles.approve: styles.review)} style={{justifySelf: 'center'}}>{user.status.access}</td>
+                            <td onClick={() => view(user)} className={styles.td + " " + styles.view} style={{textAlign: 'center'}}>View</td>
+                        </tr>
+                        )
+                    })}
+                </>
+                }
                 
                 </tbody>
             </table>
+            </div>
+            <div className={styles.user_pagination}>
+                <div>
+                    {
+                        page > 1 &&
+                        <div onClick={prevPage} className={styles.paginate_btn}>Prev</div>
+                    }
+                    {
+                        page < meta.pages &&
+                        <div onClick={nextPage} className={styles.paginate_btn}>Next</div>
+                    }
+                    
+                </div>
+                <p>{'' + page + ' of ' + meta.pages}</p>
             </div>
         </>
         }
