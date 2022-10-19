@@ -47,29 +47,58 @@ class Navbar extends Component{
                             </Link>
                             
                         </div>
-                    </div>
-                    {/* <div className="side_bottom">
-                        <p className="pb">Contact Us</p>
-                        <a target="_blank" rel="noreferrer" href="mailto:support@bquinssolution.com" className="social_link">
-                        <p className="pb google">support@bquinssolution.com</p>
-                        </a>
-                        <p className="pb whatsapp">0814 111 6273</p>
-                        <div className="sidenav_social">
-                        <a target="_blank" rel="noreferrer" href="https://wa.me/2348141116273" className="social_link">
-                            <i className="fab fa-whatsapp side_icon whatsapp"></i>
-                        </a>
+                        <div className="sidenav_link">
+                            <span className="iconify sidenav_link_icon" data-icon="ant-design:line-chart-outlined"></span>
+                            <Link href="/">
+                                <a >Investment</a>
+                            </Link>
                         </div>
-                    </div> */}
+                        <div className="sidenav_link">
+                            <span className="iconify sidenav_link_icon" data-icon="la:piggy-bank"></span>
+                            <Link href="/">
+                                <a >Savings</a>
+                            </Link>
+                        </div>
+                        <div className="sidenav_link">
+                            <span className="iconify sidenav_link_icon" data-icon="simple-line-icons:wallet" data-rotate="180deg" data-flip="vertical"></span>
+                            <Link href="/">
+                                <a >Wallet</a>
+                            </Link>
+                        </div>
+                        <div className="sidenav_link">
+                            <span className="iconify sidenav_link_icon" data-icon="bx:user"></span>
+                            <Link href="/">
+                                <a >Admins</a>
+                            </Link>
+                        </div>
+                    </div>
+                    <div className="side_bottom">
+                        <div className="sidenav_link">
+                            <span className="iconify sidenav_link_icon" data-icon="fluent:key-20-regular"></span>
+                            <Link href="/">
+                                <a >Change password</a>
+                            </Link>
+                        </div>
+                        <div className="sidenav_link">
+                            <span className="iconify sidenav_link_icon" data-icon="heroicons-outline:logout"></span>
+                            <Link href="/">
+                                <a >Logout</a>
+                            </Link>
+                        </div>
+                    </div>
                     </div>
                     <div className="header">
                     <div className="welcome_user">
                         <p className="user_welcome">User</p>
                     </div>
                     <div className="user">
-                        {/* <button className="logout_btn">log out</button> */}
-                    </div>
-                    <div className="user">
-                        {/* <p className="user_email">jlrabdulazeez@gmail.com</p> */}
+                        <span className="iconify user_icon" data-icon="uiw:reload"></span>
+                        <span className="iconify user_icon" data-icon="codicon:bell-dot"></span>
+                        <div className="user_name">
+                            <h3>Ole gunnar</h3>
+                            <p>Super admin</p>
+                        </div>
+                        <img src="/images/Ellipse.png" alt="profile image" />
                     </div>
                     </div>
                     <button id="openbutton" className="openbtn">☰</button>

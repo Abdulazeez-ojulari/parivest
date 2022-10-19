@@ -41,6 +41,8 @@
 
   .side_bottom{
     align-self: end;
+    border-top: 1px solid #C8CCD2;
+    margin: 0 2rem;
   }
 
   .pb{
@@ -167,14 +169,16 @@
   }
 
   .user{
-    float: right;
-    margin-right: 1rem;
+    margin-right: 4rem;
+    display: flex;
+    gap: 2rem;
+    justify-self: end;
+    align-items: center;
   }
 
   .welcome_user{
     text-align: center;
-    display: inline-block;
-    margin-left: 281px;
+    margin-left: 310px;
   }
 
   @media only screen and (max-width: 900px){
@@ -202,6 +206,44 @@
     color: #295AA9;
     text-align: left;
   }
+
+  .user_name{
+    display: grid;
+  }
+
+  .user_name >h3{
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    /* identical to box height */
+
+    letter-spacing: 0.374px;
+
+    /* Neutral/800 */
+
+    color: #3A3F47;
+  }
+
+  .user_name>p{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    /* identical to box height */
+
+    letter-spacing: 0.374px;
+
+    /* Neutral/700 */
+
+    color: #616976;
+  }
+
+  .user_icon{
+    font-size: 17px;
+    color: #152D55;
+  }
+  
 
   .openbtn {
     -webkit-clip-path: polygon(0 0, 100% 0%, 0% 100%);

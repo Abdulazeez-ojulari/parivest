@@ -84,10 +84,7 @@ export default function User(props) {
                         </label>
                         <div className={styles.user_filter_date_input}>
                             <DatePicker
-                                selected={startDate}
-                                onChange={(date) => setStartDate(date)}
-                                isClearable
-                                placeholderText="I have been cleared!"
+                                placeholderText="dd/mm/yyyy"
                             />
                             <span className={"iconify " + styles.date_icon} data-icon="uil:calender"></span>
                         </div>
@@ -98,10 +95,7 @@ export default function User(props) {
                         </label>
                         <div className={styles.user_filter_date_input}>
                             <DatePicker
-                                selected={startDate}
-                                onChange={(date) => setStartDate(date)}
-                                isClearable
-                                placeholderText="I have been cleared!"
+                                placeholderText="dd/mm/yyyy"
                             />
                             <span className={"iconify " + styles.date_icon} data-icon="uil:calender"></span>
                         </div>
