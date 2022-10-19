@@ -27,18 +27,25 @@ class Navbar extends Component{
             <React.Fragment>
                 <div id="mySidenav" className="sidenav">
                     <div className="sidenav_top">
-                        <a href="/" className="social_link">
+                        <Link href="/">
+                        <a className="social_link">
                         <img src="/images/Logo.png" alt="logo" className="sidenav_logo" />
                         </a>
+                        </Link>
                     </div>
                     <div className="sidenav_links">
                         <div className="sidenav_link">
                             <span className="iconify sidenav_link_icon" data-icon="bx:home-alt"></span>
-                            <a href="/">Home</a>
+                            <Link href="/">
+                                <a >Home</a>
+                            </Link>
                         </div>
                         <div className="sidenav_link active">
                             <span className="iconify sidenav_link_icon" data-icon="lucide:users"></span>
-                            <a href="/">Users</a>
+                            <Link href="/">
+                                <a >Users</a>
+                            </Link>
+                            
                         </div>
                     </div>
                     {/* <div className="side_bottom">

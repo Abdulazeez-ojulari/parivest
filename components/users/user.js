@@ -239,7 +239,7 @@ export default function User(props) {
                     <h4>Document upload</h4>
                     <div className={styles.user_document}>
                         <h3>{user.document.name}</h3>
-                        <a target={'_blank'} href={user.document.image}>Tap to view uploaded document</a>
+                        <a target={'_blank'} rel="noreferrer" href={user.document.image}>Tap to view uploaded document</a>
                     </div>
 
                 </div>
